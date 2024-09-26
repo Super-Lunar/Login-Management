@@ -1,0 +1,176 @@
+learn aggression of express
+hashing 
+jwt 
+cors
+    cross origin  resources sharing 
+.env
+    .env file store variable
+    every data in .env are string 
+    .env is not part of code so always place in root directory
+    .env file use uppercase convention
+
+nodeMailer
+    npm i nodeMailer
+
+
+    
+Multer
+    npm i multer
+
+
+Login management 
+1 Register
+2 login
+3 my profile
+4 my profile update 
+5 update password 
+6 read all user=>get=>admin superAdmin
+7 read specific user /:id=>get=>admin superAdmin
+8 delete user/:id=>get=>superAdmin
+9 update specific user/:id=>patch=>admin, superAdmin
+10 forget password=>
+    isAuthenticated
+    authorized
+
+
+    
+
+   (1) Register process
+    save data to database
+    crud(Register)
+
+
+   (2) verify email
+    postman token 
+    get token 
+    verify token 
+    get id from token 
+    make isVerifiedEmail true
+
+    (3)login 
+    email and password 
+    check if that email exist=> if email not found throw error 
+    check if that email verified =>(if not throw error )
+    check if password match =>if not throw error 
+
+    backend =>generate token => attached id
+    send token  to postman(frontend)
+
+
+
+    my profile 
+    1st part
+    pass token from postman
+    grt token from postman 
+    verify token(if token is not valid throw error)
+    get id from token 
+    pass id to another middleware
+    next()
+
+
+2nd part
+    find the details by using that id 
+
+
+
+way to get data by calling middleware
+.get((req,res,next)=>{
+  let var1= "reena roy";
+  req.data= var1;
+  req.age=24;
+  next();
+
+},
+(req,res,next)=>{
+  res.json("hello")
+  console.log(req.data)
+  console.log(req.age)
+} );
+
+
+
+update profile
+    pass token from postman
+    pass that token throw isAuthenticated
+    get id
+    get data body
+    delete email and password from body
+    update profile
+    send response
+
+    update password
+    pass token
+    isAuthenticated
+    get id
+    id
+    get data from  post man 
+        body of postman =>{
+            oldPassword=>check either oldPassword match with database password
+            if not  throw error 
+
+            newPassword=> hash newPassword ,save to database
+            send response
+
+        }
+
+
+
+        status code
+        success:2xx
+
+
+        create=201
+        read=200
+        update=201
+        delete=200
+
+
+        error:4xx
+        400
+        401=>token not valid,credential not match
+        403=>token is valid but not authorized
+        409=>conflict +(duplicate)
+        404=>api not found
+
+
+        forget password process
+
+        forget password
+            pass email from postman
+            get email
+        check if that email exist in our db (else throw error with status code 404 )
+        send email with link (frontend link with token )
+        send response
+
+        reset password
+        pass token from postman
+        pass password from postman
+         pass throw => isAuthenticated
+         get id 
+         hash password
+         update that id 
+         send response
+
+  isAuthenticated  =>middleware  
+  postMan pass token 
+  isAuthenticated  
+  id
+  read details  of that id 
+Authorization
+=>admin =>user read
+superAdmin=>user read ,delete user
+customer=>does not have permission to read user
+get role of that details
+
+if the role is either admin or superAdmin do next
+otherwise throw error with status code 403
+
+
+js 
+includes 
+
+
+
+
+
+    
